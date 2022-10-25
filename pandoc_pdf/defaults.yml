@@ -31,7 +31,9 @@ cs:
     variables:
         lang: ja
         luatexjapresetoptions: haranoaji
-        classoption: pandoc
+        classoption:
+            - pandoc
+            - titlepage
     filters:
         - pandoc-crossref
     include-in-header:
@@ -39,7 +41,7 @@ cs:
         - ${.}/deeplists.tex
     metadata:
         listings: true
-        documentclass: bxjsreport
+        documentclass: bxjsarticle
         geometry: a4paper
         figureTitle: "図"
         tableTitle: "表"
