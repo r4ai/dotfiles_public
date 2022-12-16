@@ -17,8 +17,8 @@ if [ (string match -r -- "\d*-microsoft-standard-WSL2" (uname -r)) ]
     #* vcXsrv
     export DISPLAY=(cat /etc/resolv.conf | grep nameserver | sed 's/.* //g'):0
     if type -q tex
-        set -gx MANPATH "/usr/local/texlive/2022/texmf-dist/doc/man" $MANPATH
-        set -gx INFOPATH "/usr/local/texlive/2022/texmf-dist/doc/info" $INFOPATH
+        set -gx MANPATH /usr/local/texlive/2022/texmf-dist/doc/man $MANPATH
+        set -gx INFOPATH /usr/local/texlive/2022/texmf-dist/doc/info $INFOPATH
     end
 end
 
@@ -30,6 +30,6 @@ set -gx PATH "$VOLTA_HOME/bin" $PATH
 
 #* pyenv
 if type -q pyenv
-	set -x PYENV_ROOT $HOME/.pyenv
-	pyenv init - | source
+    set -x PYENV_ROOT $HOME/.pyenv
+    pyenv init - | source
 end
