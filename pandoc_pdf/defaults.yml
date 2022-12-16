@@ -55,6 +55,7 @@ report:
     pdf-engine: xelatex
     standalone: true
     listings: true
+    number-sections: true
     variables:
         lang: ja
         luatexjapresetoptions: haranoaji
@@ -65,6 +66,7 @@ report:
         - ${.}/header.tex
         - ${.}/deeplists.tex
     metadata:
+        listings: true
         documentclass: bxjsarticle
         geometry: a4paper
         figureTitle: "図"
