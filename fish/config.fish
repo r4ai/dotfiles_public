@@ -3,12 +3,20 @@ source ~/.config/fish/env.fish
 
 #! ---PROMPT/THEME settings---
 set -g fish_prompt_pwd_dir_length 0 # prompt_pwdを省略させない
-starship init fish | source
-export BAT_THEME="TwoDark"
-zoxide init fish | source
+if type -q starship
+    starship init fish | source
+end
+if type -q z
+    zoxide init fish | source
+end
 
 
 #! ---ALIAS SETTING---
+#* YAY
+if type -q yay
+    abbr yay-update 'yay -Syu'
+end
+
 #* EXA
 if type -q exa
     alias l 'exa -F --icons'
@@ -22,9 +30,6 @@ if type -q nvim
     alias vi nvim
     alias vim nvim
 end
-if type -q silicon
-    alias carbon silicon
-end
 
 #* PYTHON
 abbr py python3
@@ -33,12 +38,26 @@ if type -q poetry
     alias penv 'source (poetry env info --path)/bin/activate.fish'
 end
 
+#* NODE
+if type -q volta
+    abbr nvm volta
+end
+
 #* GIT
-alias g git
-abbr gs 'git status'
-abbr ga 'git add'
-abbr gaa 'git add .'
-abbr gc 'git commit -m'
+if type -q git
+    abbr g git
+    abbr gs 'git status'
+    abbr ga 'git add'
+    abbr gaa 'git add .'
+    abbr gcm 'git commit -m'
+end
+
+#* SILICON(CARBON)
+if type -q silicon
+    alias carbon silicon
+    abbr carbon 'carbon -f HackGen'
+    abbr silicon 'silicon -f HackGen'
+end
 
 #* SSH
 abbr ssh-keygen 'ssh-keygen -t rsa -b 4096 -o -a 100'
@@ -49,18 +68,16 @@ if type -q topgrade
     alias update "topgrade --disable conda system"
 end
 
-#* Clipboard
-switch uname
-    case Darwin
-        #* MAC
-        alias pwdc 'pwd | tr -d "\n" | pbcopy'
-        alias copy pbcopy
-    case Linux
-        if test (uname -r) = '.*microsoft.*'
-            #* WSL
-            alias pwdc 'pwd | tr -d "\n" | /mnt/c/WINDOWS/system32/clip.exe'
-            alias copy '/mnt/c/WINDOWS/system32/clip.exe'
-        end
+#* ATCODER
+if type -q oj
+    alias atcoder-test "oj test -c 'python3 ./main.py' -d ./tests"
+end
+if type -q acc
+    alias atcoder-submit "acc submit main.py"
+end
+
+if [ (get_os_name) = macos ]
+    abbr sed gsed
 end
 
 #! ---ON_EXIT---
