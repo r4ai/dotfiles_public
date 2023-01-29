@@ -3,34 +3,34 @@ Set-PSReadLineKeyHandler -Key Tab -Function Complete
 Invoke-Expression (&starship init powershell)
 
 #! ---IMPORT MODULES---
-Import-Module ZLocation
-Import-Module PSFzf
-Enable-PsFzfAliases
+Import-Module C:\Users\e4zy9\scoop\modules\Terminal-Icons\Terminal-Icons.psm1
+Import-Module posh-git
+Import-Module "$($(Get-Item $(Get-Command scoop.ps1).Path).Directory.Parent.FullName)\modules\scoop-completion"
+Invoke-Expression -Command $(gh completion -s powershell | Out-String)
+
+#! ---ALIAS---
+Set-Alias -Name 'which' -Value 'Get-Command'
+Set-Alias -Name 'll' -Value 'ls'
+Set-Alias -Name 'gs' -Value 'git status'
 
 #! ---ORIGINAL FUNCTIONS---
-function ll() {
-    lsd -lA
-}
-function l() {
-    lsd -A
-}
 function lt() {
-    lsd -A --tree
+  lsd -A --tree
 }
 function cat() {
-    bat
+  bat
 }
 function touch($file) {
-    If (Test-Path $file) {
+  If (Test-Path $file) {
       (Get-Item $file).LastWriteTime = Get-Date
-    }
-    Else {
-        Out-File -encoding Default $file
-    }
+  }
+  Else {
+    Out-File -encoding Default $file
+  }
 }
 function open($path) {
-    explorer.exe $path
+  explorer.exe $path
 }
 function reload() {
-    . $profile
+  . $profile
 }
