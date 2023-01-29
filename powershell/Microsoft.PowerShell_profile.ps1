@@ -1,4 +1,4 @@
-Set-PSReadLineKeyHandler -Key Tab -Function Complete
+Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 #! ---PROMPT---
 Invoke-Expression (&starship init powershell)
 
@@ -11,7 +11,6 @@ Invoke-Expression -Command $(gh completion -s powershell | Out-String)
 #! ---ALIAS---
 Set-Alias -Name 'which' -Value 'Get-Command'
 Set-Alias -Name 'll' -Value 'ls'
-Set-Alias -Name 'gs' -Value 'git status'
 
 #! ---ORIGINAL FUNCTIONS---
 function lt() {
@@ -33,4 +32,8 @@ function open($path) {
 }
 function reload() {
   . $profile
+}
+
+function gs() {
+  git status
 }
