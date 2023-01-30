@@ -7,6 +7,7 @@ Import-Module C:\Users\e4zy9\scoop\modules\Terminal-Icons\Terminal-Icons.psm1
 Import-Module posh-git
 Import-Module "$($(Get-Item $(Get-Command scoop.ps1).Path).Directory.Parent.FullName)\modules\scoop-completion"
 Import-Module npm-completion
+Import-Module yarn-completion
 Invoke-Expression -Command $(gh completion -s powershell | Out-String)
 Invoke-Expression -Command $(volta completions powershell | Out-String)
 
